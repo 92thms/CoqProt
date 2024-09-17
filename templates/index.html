@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>CoqProt - Hahnenkrähen-Protokoll</title>
+</head>
+<body>
+    <h1>CoqProt - Hahnenkrähen-Protokoll</h1>
+    <h2>Erkannte Hahnenkrähen</h2>
+    <ul>
+        {% for recording in recordings %}
+        <li>
+            {{ recording }}
+            [<a href="{{ url_for('download_recording', filename=recording) }}">Herunterladen</a>]
+            [<audio controls>
+                <source src="{{ url_for('download_recording', filename=recording) }}" type="audio/wav">
+                Ihr Browser unterstützt das Audioelement nicht.
+            </audio>]
+        </li>
+        {% endfor %}
+    </ul>
+    <h2>Live-Audio-Stream</h2>
+    <audio controls autoplay>
+        <source src="{{ url_for('audio_feed') }}" type="audio/wav">
+        Ihr Browser unterstützt das Audioelement nicht.
+    </audio>
+</body>
+</html>
